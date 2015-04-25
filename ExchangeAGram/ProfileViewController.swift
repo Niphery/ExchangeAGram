@@ -28,6 +28,9 @@ class ProfileViewController: UIViewController, FBLoginViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func mapViewButtonTapped(sender: UIButton) {
+        performSegueWithIdentifier("mapSegue", sender: nil)
+    }
 
     func loginViewShowingLoggedInUser(loginView: FBLoginView!) {
         profileImageView.hidden = false
@@ -36,7 +39,7 @@ class ProfileViewController: UIViewController, FBLoginViewDelegate {
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
-        println(user)
+        println("error=\(user)")
         nameLabel.text = user.name
         
         let userImageURL = "https://graph.facebook.com/\(user.objectID)/picture?type=small"

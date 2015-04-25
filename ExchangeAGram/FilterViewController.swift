@@ -197,9 +197,9 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         FBDialogs.presentShareDialogWithPhotoParams(params, clientState: nil) { (call, result, error) -> Void in
             if (result != nil) {
-                println(result)
+                println("FB error\(result)")
             } else {
-                println(error)
+                println("FB error\(error)")
             }
         }
     }
@@ -208,7 +208,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Caching functions
     
     func cacheImage(imageNumber: Int) {
-        let fileName = "\(imageNumber)"
+        let fileName = "\(thisFeedItem.uniqueID)\(imageNumber)"
         let uniquePath = tmp.stringByAppendingPathComponent(fileName)
         
         if !NSFileManager.defaultManager().fileExistsAtPath(fileName) {

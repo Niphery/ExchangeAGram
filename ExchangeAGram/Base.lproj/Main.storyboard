@@ -104,6 +104,16 @@
                                 <rect key="frame" x="50" y="400" width="200" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-87-Knt">
+                                <rect key="frame" x="10" y="220" width="140" height="30"/>
+                                <color key="backgroundColor" red="0.98981448690858931" green="1" blue="0.34558415564325096" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Map View">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mapViewButtonTapped:" destination="gA7-Mr-1b9" eventType="touchUpInside" id="uDG-JJ-zmY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -111,11 +121,38 @@
                         <outlet property="fbLoginView" destination="vLQ-hD-T2A" id="mxR-fR-ITJ"/>
                         <outlet property="nameLabel" destination="RWR-fp-xVj" id="pKQ-lO-M7c"/>
                         <outlet property="profileImageView" destination="m3G-VL-QKp" id="dnl-6p-cFj"/>
+                        <segue destination="8fa-1O-VeC" kind="show" identifier="mapSegue" id="iab-2A-L80"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSe-b0-tcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1856" y="349"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="1HK-bn-sux">
+            <objects>
+                <viewController id="8fa-1O-VeC" customClass="MapViewController" customModule="ExchangeAGram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HTQ-2v-ptb"/>
+                        <viewControllerLayoutGuide type="bottom" id="QWb-R1-fM9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fki-0p-n1j">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zC7-eM-G6I">
+                                <rect key="frame" x="0.0" y="-8" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="zC7-eM-G6I" id="GB5-1J-DLa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Yk-YR-oEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2539" y="349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wHT-z2-ybb">
