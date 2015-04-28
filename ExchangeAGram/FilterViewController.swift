@@ -175,6 +175,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.thisFeedItem.thumbNail = thumbNailData
         
         self.thisFeedItem.caption = caption
+        self.thisFeedItem.filtered = true
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
         self.navigationController?.popViewControllerAnimated(true)
