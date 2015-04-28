@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="w4Z-7z-23Z">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Feed View Controller-->
@@ -16,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I5U-V5-9ch">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I5U-V5-9ch">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PpN-rc-bey">
                                     <size key="itemSize" width="150" height="150"/>
@@ -57,6 +58,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="I5U-V5-9ch" secondAttribute="bottom" id="7US-7a-XGA"/>
+                            <constraint firstItem="I5U-V5-9ch" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="QQr-yO-IaP"/>
+                            <constraint firstItem="I5U-V5-9ch" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="SxI-ys-hme"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I5U-V5-9ch" secondAttribute="trailing" constant="-16" id="zYY-Z7-2sm"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OfG-jU-4cV">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="h83-pN-AFk">

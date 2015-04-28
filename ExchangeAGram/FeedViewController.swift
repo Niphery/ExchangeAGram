@@ -99,17 +99,25 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let entityDescription = NSEntityDescription.entityForName("FeedItem", inManagedObjectContext: managedObjectContext!)
-        
         let feedItem = FeedItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        
         
         feedItem.image = imageData
         feedItem.caption = "test caption"
         feedItem.thumbNail = thumbNailData
-        feedItem.latitude = locationManager.location.coordinate.latitude
-        feedItem.longitude = locationManager.location.coordinate.longitude
+        
+        if let location = locationManager.location {
+            feedItem.latitude = locationManager.location.coordinate.latitude
+            feedItem.longitude = locationManager.location.coordinate.longitude
+        }
+        else {
+            println("No location available")
+        }
         
         let UUID = NSUUID().UUIDString
         feedItem.uniqueID = UUID
+        
+        feedItem.filtered = false
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
         

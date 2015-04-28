@@ -12,35 +12,28 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     var thisFeedItem: FeedItem!
     var collectionView: UICollectionView!
-    
-    let kIntesity = 0.7
+    let kIntensity = 0.7
     var context:CIContext = CIContext(options: nil)
     var filters:[CIFilter] = []
-    
     let placeHolderImage = UIImage(named: "Placeholder")
-    
     let tmp = NSTemporaryDirectory()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 150.0, height: 150.0)
-        
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        let layOut = UICollectionViewFlowLayout()
+        layOut.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layOut.itemSize = CGSize(width: 150, height: 150)
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layOut)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.whiteColor()
-        
         collectionView.registerClass(FilterCell.self, forCellWithReuseIdentifier: "MyCell")
         
         self.view.addSubview(collectionView)
-        
         filters = photoFilters()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,7 +97,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
         colorControls.setValue(0.5, forKey: kCIInputSaturationKey)
         
         let sepia = CIFilter(name: "CISepiaTone")
-        sepia.setValue(kIntesity, forKey: kCIInputIntensityKey)
+        sepia.setValue(kIntensity, forKey: kCIInputIntensityKey)
         
         let colorClamp = CIFilter(name: "CIColorClamp")
         colorClamp.setValue(CIVector(x: 0.9, y: 0.9, z: 0.9, w: 0.9), forKey: "inputMaxComponents")
@@ -115,8 +108,8 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let vignette = CIFilter(name: "CIVignette")
         vignette.setValue(composite.outputImage, forKey: kCIInputImageKey)
-        vignette.setValue(kIntesity * 2, forKey: kCIInputIntensityKey)
-        vignette.setValue(kIntesity * 30, forKey: kCIInputRadiusKey)
+        vignette.setValue(kIntensity * 2, forKey: kCIInputIntensityKey)
+        vignette.setValue(kIntensity * 30, forKey: kCIInputRadiusKey)
         
         
         return [blur, instant, noir, transfer, unsharpen, monochrome, colorControls, sepia, colorClamp, composite, vignette]
@@ -221,16 +214,18 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func getCachedImage (imageNumber: Int) -> UIImage {
-        let fileName = "\(imageNumber)"
+        let fileName = "\(thisFeedItem.uniqueID)\(imageNumber)"
         let uniquePath = tmp.stringByAppendingPathComponent(fileName)
         
         var image:UIImage
         
         if NSFileManager.defaultManager().fileExistsAtPath(uniquePath) {
-            image = UIImage(contentsOfFile: uniquePath)!
+            var returnedImage = UIImage(contentsOfFile: uniquePath)!
+            image = UIImage(CGImage: returnedImage.CGImage, scale: 1.0, orientation: UIImageOrientation.Right)!
         } else {
             self.cacheImage(imageNumber)
-            image = UIImage(contentsOfFile: uniquePath)!
+            var returnedImage = UIImage(contentsOfFile: uniquePath)!
+            image = UIImage(CGImage: returnedImage.CGImage, scale: 1.0, orientation: UIImageOrientation.Right)!
         }
         
         return image
